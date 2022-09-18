@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import Images from './Images';
+import { useState } from 'react';
 
 function App() {
+  const[selectedImage,setSelectedImage]=useState (Images[0])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div className='container'>
+     <img src={selectedImage} alt='selectedImage' className='selected' />
+     <div className='imageHolder'>
+      {
+        Images.map((img,index)=>(
+          <img 
+          style={{border:selectedImage ===img ? "4px solid purple" :""}}
+          key={index} src={img} alt='image'
+          onClick={()=> setSelectedImage(img)}
+           />
+         
+        ))
+      }
+     </div>
+
+     </div>
     </div>
   );
 }
